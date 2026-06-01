@@ -15,7 +15,7 @@ const MovieContextWrapper = ({ children }) => {
 
   const removeFromWatchList = (movie) => {
     setWatchList((prev) => {
-      const filteredList = prev.filter((m) => m?.id != movie?.id);
+      const filteredList = prev?.filter((m) => m?.id != movie?.id);
       localStorage.setItem("ImdbWatchList", JSON.stringify(filteredList));
       return filteredList;
     });
@@ -23,7 +23,7 @@ const MovieContextWrapper = ({ children }) => {
 
   const addToWatchList = (movie) => {
     setWatchList((prev) => {
-      const updatedList = [...prev, movie];
+      const updatedList = prev?.length > 0 ? [...prev, movie] : [movie];
       localStorage.setItem("ImdbWatchList", JSON.stringify(updatedList));
       return updatedList;
     });
