@@ -1,0 +1,17 @@
+Agenda;
+
+// Contest Unlocked on Saturday ->  8th June
+// Break of 1 week -> refresh and gather everything topics related to LLD
+// Doubts
+// List of it
+
+// useRef()
+// solve some problem
+// custom hook
+
+// useRef()
+
+// documentAPI -> access to DOM
+// 1. it allows to access DOM element
+// 2. as useState causes re-render when state value is changed but here ref
+// doesn't cause re-render on change of value
