@@ -15,3 +15,12 @@ Agenda;
 // 1. it allows to access DOM element
 // 2. as useState causes re-render when state value is changed but here ref
 // doesn't cause re-render on change of value
+
+
+// optimization 
+
+// caching 
+// memo - caches react component WRT to props
+// useMemo - caches the return value of a function WRT to dependencies
+// useCallback - caches the function definition WRT to dependencies
+// useRef - it can be used to store any mutable value WRT to component lifecycle

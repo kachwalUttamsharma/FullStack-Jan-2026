@@ -4,13 +4,17 @@ import heroImg from "./assets/hero.png";
 import "./App.css";
 import RefExample from "./components/RefExample";
 import Timer from "./components/Timer";
+import Stopwatch from "./components/Stopwatch";
+import Carousel from "./components/Carousel";
 
 function App() {
   return (
     <>
-      <RefExample />
+      {/* <RefExample />
       <Timer />
-      <Timer />
+      <Timer /> */}
+  {/* <Stopwatch /> */}
+  <Carousel />
     </>
   );
 }
