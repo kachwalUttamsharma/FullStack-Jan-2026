@@ -1,0 +1,16 @@
+MERN -> MongoDB, Express, React, NodeJs
+
+SQL -> Postgress, MYSQL
+MongoDB -> NoSQL
+
+Request -> 
+
+1. URL
+2. Method
+
+
+Http Status:
+
+2XX -> success
+4XX -> req was wrong (client side mistake)
+5XX -> server side mistake (server is down)
