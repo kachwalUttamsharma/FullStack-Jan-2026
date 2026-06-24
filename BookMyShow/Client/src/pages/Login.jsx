@@ -1,0 +1,51 @@
+import React from "react";
+import { Button, Form, Input } from "antd";
+import { Link } from "react-router-dom";
+import { loginUser } from "../api/authApi";
+
+const Login = () => {
+    const onFinish = async (values) => {
+       const response = await loginUser(values);
+       console.log(response);
+    }
+  return (
+    <main className="App-header">
+      <h1>Login to BookMyShow</h1>
+      <section className="mw-500 text-center px-3">
+        <Form layout="vertical" onFinish={onFinish}>
+          <Form.Item
+            label="Email"
+            htmlFor="email"
+            name="email"
+            rules={[
+              { required: true, message: "Email is required" },
+              { type: "email", message: "Please enter a valid email" },
+            ]}
+          >
+            <Input id="email" type="text" placeholder="Please Enter Email" />
+          </Form.Item>
+          <Form.Item
+            label="Password"
+            htmlFor="password"
+            name="password"
+            rules={[
+              { required: true, message: "Password is required" },
+            ]}
+          >
+            <Input.Password id="password" placeholder="Please Enter Password" />
+          </Form.Item>
+
+          <Form.Item>
+            <Button type="primary" style={{fontSize: "1rem", fontWeight: "600"}} block htmlType="submit">Login</Button>
+          </Form.Item>
+        </Form>
+
+        <div>
+            <p>New User ? <Link to="/register">Register Here</Link></p>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default Login;

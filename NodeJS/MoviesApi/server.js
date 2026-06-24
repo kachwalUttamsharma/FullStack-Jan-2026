@@ -5,11 +5,12 @@ const moviesRoute = require("./src/routes/moviesRoute");
 const notFoundMiddleware = require("./src/middleware/notFoundMiddleware");
 const errorMiddleware = require('./src/middleware/errorMiddleware');
 const loggerMiddleware = require("./src/middleware/loggerMiddleware");
+const authMiddleware = require('./src/middleware/authMiddleware');
 
 app.use(express.json());
 app.use(loggerMiddleware);
 
-app.use("/api/v1/movies", moviesRoute);
+app.use("/api/v1/movies",moviesRoute);
 
 
 

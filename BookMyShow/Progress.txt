@@ -1,0 +1,28 @@
+// Client Setup
+// structure of production ready 
+// Basic routes
+// few pages
+// api
+
+
+Library Needed:
+
+1. React-router-dom -> Router and manage SPA 
+2. Axios -> In order make request to backend
+
+Common Pages Across Any Application
+1. Home
+2. Login
+3. SignUp/Register
+4. Admin
+
+// Roles -> normal user (who will book tickets) 
+// and Admin (who manages movies and theatres)
+
+1. Login Component
+2. Password Component
+3. Basic Setup
+4. AntD 
+5. Setup of axios instance
+
+// MongoDb
