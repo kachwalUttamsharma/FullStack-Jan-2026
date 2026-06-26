@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./src/config/db.js";
+import userRoutes from "./src/routes/userRoutes.js";
 
 // loading your secrets into server
 dotenv.config();
@@ -9,6 +10,10 @@ connectDB();
 const app = express();
 
 const PORT = process?.env?.PORT || 5000;
+
+app.use(express.json());
+
+app.use("/bookmyshow/api/v1/users/", userRoutes);
 
 app.get("/", (req, res) => {
     res.send("Book My Show Server")
