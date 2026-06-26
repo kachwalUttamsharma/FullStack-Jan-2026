@@ -25,4 +25,29 @@ Common Pages Across Any Application
 4. AntD 
 5. Setup of axios instance
 
-// MongoDb
+// Database -> ?
+
+// Persistance
+
+// SQL vs NoSQL -> HLD
+
+// NOSQL -> MongoDb -> Documents
+
+// SQL          MongoDB
+// Tabels   =    Collections
+// Row      =    Documents
+// Columns  =    Fields
+
+
+
+client -> server -> DB
+
+Terminology of language 
+
+Client -> Server  -> JS
+
+Server -> DB
+
+JS Object -> JS Object (cannot store) Documents
+
+Translator -> JS Obj -> Document Object 
