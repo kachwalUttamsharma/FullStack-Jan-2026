@@ -1,12 +1,18 @@
 import axiosInstace from "./axiosInstace";
 
-// http://localhost:4000/api/bookmyshow/v1/user/login
-export function registerUser(data) {
-    // Http Method -> POST -> we are sending user data
-    // user
-    return axiosInstace.post("/users/register", data);
+export async function registerUser(data) {
+  try {
+    const response = await axiosInstace.post("/users/register", data);
+    if(response.status === 201) {
+        return response?.data;
+    } else if(response.status === 200) {
+        return response?.data;
+    }
+  } catch (error) {
+    return error;
+  }
 }
 
 export function loginUser(data) {
-    return axiosInstace.post("/users/login", data);
+  return axiosInstace.post("/users/login", data);
 }
