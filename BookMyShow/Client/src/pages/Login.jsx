@@ -1,12 +1,24 @@
 import React from "react";
-import { Button, Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Button, Form, Input, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../api/authApi";
 
 const Login = () => {
+  const navigate = useNavigate();
     const onFinish = async (values) => {
+      try {
        const response = await loginUser(values);
-       console.log(response);
+       if(response.success) {
+        message.success(response.message);
+        setTimeout(() => {
+          navigate("/");
+        }, 1500)
+       } else {
+        message.warning(response.message);
+       }
+       } catch(error) {
+        message.error(error);
+       }
     }
   return (
     <main className="App-header">
