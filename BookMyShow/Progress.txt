@@ -84,3 +84,15 @@ Translator -> JS Obj -> Document Object
 // Cookie (wont be using it)
 // local storage
  
+
+ // HTTP is stateless
+
+ -> Each req that comes to server is considered brand new req
+
+ -> User login
+ -> Bunch of api's calls (this users are already logged in)
+     - keep sending user name and Password
+
+- TTYL - banking or finances system is very sensitive (1 min expiry time) - token refresh over the time
+
+- Debouncing -> auto suggestion 

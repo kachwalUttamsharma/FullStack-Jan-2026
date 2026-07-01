@@ -22,9 +22,9 @@ export async function loginUser(data) {
   }
 }
 
-export const currentUser = async (data) => {
+export const currentUser = async () => {
   try {
-    const response = await axiosInstace.get(`/users/getCurrentUser/${data}`);
+    const response = await axiosInstace.get(`/users/getCurrentUser/`);
     return response?.data;
   } catch (error) {
     return error;

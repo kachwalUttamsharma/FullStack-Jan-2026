@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
+import { generateToken } from "../utils/jwt.js";
 
 export const register = async (req, res) => {
   try {
@@ -63,9 +64,12 @@ export const login = async (req, res) => {
       });
     }
 
+    const token = generateToken({ userId: validateUser?._id, role: validateUser?.role , email: validateUser?.email });
+
     res.send({
       success: true,
       message: "You have successfully logged-In",
+      data: token
     });
   } catch (error) {
     res.status(500).json({
@@ -77,7 +81,8 @@ export const login = async (req, res) => {
 
 export const currentUser = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const userId = req.user.userId;
+    console.log("user", req.user);
     // remove password from response
     const user = await User.findById(userId);
     if(!user) {

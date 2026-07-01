@@ -9,7 +9,7 @@ const Home = () => {
 
   useEffect(async () => {
     try {
-      const response = await currentUser("6a3def8f8ab4440891d6703b")
+      const response = await currentUser()
       if(response.success) {
         setUserInfo(response?.data);
       }

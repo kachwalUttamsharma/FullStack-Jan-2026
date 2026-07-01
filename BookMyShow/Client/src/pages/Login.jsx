@@ -11,6 +11,7 @@ const Login = () => {
        if(response.success) {
         message.success(response.message);
         setTimeout(() => {
+          localStorage.setItem("bookmyshow_token", response.data);
           navigate("/");
         }, 1500)
        } else {
