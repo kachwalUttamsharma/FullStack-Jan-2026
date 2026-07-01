@@ -16,4 +16,17 @@ axiosInstace.interceptors.request.use(
     }
 )
 
+axiosInstace.interceptors.response.use(
+    (response) => {
+        if(response && response.data && !response.data.success && response.data.message === "Token has expired, Login again to continue") { 
+            localStorage.removeItem("bookmyshow_token");
+            window.location.href = "/login";
+        }
+        return response;
+    },
+    (error) => {
+        return Promise.reject(error.response.data);
+    }
+)
+
 export default axiosInstace;

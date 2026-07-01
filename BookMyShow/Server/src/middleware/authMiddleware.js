@@ -21,6 +21,20 @@ export const authMiddleware = (req, res, next) => {
 
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
+        if(decodedToken.exp * 1000 < Date.now()) {
+            return res.status(401).json({
+                success: false,
+                message: "Token has expired, Login again to continue"
+            });
+        }
+        
+        if(!decodedToken) {
+            return res.status(401).json({
+                success: false,
+                message: "Unauthorized access"
+            });
+        }
+
         if(decodedToken) {
             req.user = decodedToken;
             next();
