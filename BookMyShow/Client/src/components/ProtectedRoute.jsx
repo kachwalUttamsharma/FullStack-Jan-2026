@@ -23,6 +23,9 @@ const ProtectedRoute = ({ children }) => {
             message.error(error);
         }
     }
+    () => {
+      setUserInfo(null);
+    }
   }, []);
 
 

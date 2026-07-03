@@ -2,7 +2,9 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./src/config/db.js";
 import userRoutes from "./src/routes/userRoutes.js";
+import movieRoutes from "./src/routes/movieRoutes.js";
 import cors from "cors";
+import { authMiddleware } from "./src/middleware/authMiddleware.js";
 
 // loading your secrets into server
 dotenv.config();
@@ -23,6 +25,7 @@ app.use(express.json());
 // http://localhost:3000/bookmyshow/api/v1/users/register
 
 app.use("/bookmyshow/api/v1/users/", userRoutes);
+app.use("/bookmyshow/api/v1/movies/", authMiddleware,movieRoutes);
 
 app.get("/", (req, res) => {
     res.send("Book My Show Server")

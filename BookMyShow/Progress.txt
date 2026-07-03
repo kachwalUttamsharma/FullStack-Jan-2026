@@ -96,3 +96,28 @@ Translator -> JS Obj -> Document Object
 - TTYL - banking or finances system is very sensitive (1 min expiry time) - token refresh over the time
 
 - Debouncing -> auto suggestion 
+
+
+client
+Login / Logout / Register / Home (protected route)
+
+server
+entity -> user
+built login and register user and get curren user api
+
+
+User:
+
+Admin / platform team 
+Partner / theatre owner
+User / customer
+
+Entity:
+User - already declared and built
+Movies - all api and UI components
+Theatre
+Shows
+Booking
+
+
+Platform User (Admin) -> should be adding a movie 
