@@ -18,6 +18,7 @@ const ProtectedRoute = ({ children }) => {
             const response = await currentUser();
             if (response.success) {
                 setUserInfo(response?.data);
+                localStorage.setItem("userInfo", JSON.stringify(response?.data));
             }
         } catch (error) {
             message.error(error);
