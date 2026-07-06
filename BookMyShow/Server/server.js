@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./src/config/db.js";
 import userRoutes from "./src/routes/userRoutes.js";
 import movieRoutes from "./src/routes/movieRoutes.js";
+import theatreRoutes from "./src/routes/theatreRoutes.js";
 import cors from "cors";
 import { authMiddleware } from "./src/middleware/authMiddleware.js";
 
@@ -26,6 +27,7 @@ app.use(express.json());
 
 app.use("/bookmyshow/api/v1/users/", userRoutes);
 app.use("/bookmyshow/api/v1/movies/", authMiddleware,movieRoutes);
+app.use("/bookmyshow/api/v1/theatres/", authMiddleware, theatreRoutes);
 
 app.get("/", (req, res) => {
     res.send("Book My Show Server")

@@ -3,15 +3,18 @@ import MovieForm from "./MovieForm";
 import { Button, Table, message } from "antd";
 import { getAllMovies, deleteMovie } from "../../api/movies";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import moment from "moment";
+import DeleteMovieModal from "./DeleteMovieModal";
 
 const MovieTable = () => {
   const [open, setOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const handleEdit = (movie) => {
-    setSelectedMovie({ releaseDate: new Date(movie.date).toDateString() ,...movie});
+    setSelectedMovie({ releaseDate: moment(movie.date).format("YYYY-MM-DD") ,...movie});
     setOpen(true);
   }
 
@@ -33,19 +36,9 @@ const MovieTable = () => {
     }
   };
 
-  const handleDelete = async (movieId) => {
-    try {
-      const response = await deleteMovie(movieId);
-      if(response.success) {
-        message.success(response.message);
-        fetchMovies();
-      } else {
-        message.warning(response.message);
-      }
-    } catch(error) {
-      console.error("Error deleting movie:", error);
-      message.error("Failed to delete movie. Please try again later.");
-    }
+  const handleDelete = async (movie) => {
+    setSelectedMovie(movie);
+    setIsDeleteModalOpen(true);
   };
 
  
@@ -97,7 +90,7 @@ const MovieTable = () => {
           <Button type="primary" onClick={() => handleEdit(record)}>
             <EditOutlined />
           </Button>
-          <Button type="danger" onClick={() => handleDelete(record._id)}>
+          <Button type="danger" onClick={() => handleDelete(record)}>
             <DeleteOutlined />
           </Button>
         </div>
@@ -113,6 +106,9 @@ const MovieTable = () => {
       </div>
       <Table dataSource={movies} columns={tableColumns} rowKey="_id" loading={loading} />
       <MovieForm open={open} setOpen={setOpen}  selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} fetchMovies={fetchMovies}/>
+      {isDeleteModalOpen && (
+        <DeleteMovieModal isDeleteModalOpen={isDeleteModalOpen} setIsDeleteModalOpen={setIsDeleteModalOpen} selectedMovie={selectedMovie} setSelectedMovie={setSelectedMovie} fetchMovies={fetchMovies}/>
+      )}
     </>
   );
 };
