@@ -4,6 +4,7 @@ import { getAllTheatre } from "../../api/theatre";
 import { Button, message, Table } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import DeleteTheatreModal from "./DeleteTheatreModal";
+import ShowModal from "./ShowModal";
 
 const ThreatreList = () => {
   const [open, setOpen] = useState(false);
@@ -11,6 +12,7 @@ const ThreatreList = () => {
   const [selectedTheatre, setSelectedTheatre] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isShowModalOpen, setIsShowModalOpen] = useState(false);
 
   const fetchTheatre = async () => {
     try {
@@ -85,6 +87,14 @@ const ThreatreList = () => {
           <Button type="danger" onClick={() => handleDelete(record)}>
             <DeleteOutlined />
           </Button>
+          {record.isActive && (
+            <Button onClick={() => {
+              setSelectedTheatre(record);
+              setIsShowModalOpen(true);
+            }}>
+              + Shows
+            </Button>
+          )}
         </div>
       ),
     },
@@ -118,6 +128,16 @@ const ThreatreList = () => {
           setSelectedTheatre={setSelectedTheatre}
         />
       )}
+      {
+        isShowModalOpen && (
+          <ShowModal 
+          isShowModalOpen={isShowModalOpen}
+          setIsShowModalOpen={setIsShowModalOpen}
+          selectedTheatre={selectedTheatre}
+          setSelectedTheatre={setSelectedTheatre}
+          />
+        )
+      }
     </div>
   );
 };

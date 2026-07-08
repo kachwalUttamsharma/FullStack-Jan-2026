@@ -10,25 +10,27 @@ const ProtectedRoute = ({ children }) => {
   const [userInfo, setUserInfo] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(async () => {
+  const fetchUser = async () => {
+    const response = await currentUser();
+    if (response.success) {
+      setUserInfo(response?.data);
+      localStorage.setItem("userInfo", JSON.stringify(response?.data));
+    }
+  };
+  useEffect(() => {
     if (!localStorage.getItem("bookmyshow_token")) {
       navigate("/login");
     } else {
-        try {
-            const response = await currentUser();
-            if (response.success) {
-                setUserInfo(response?.data);
-                localStorage.setItem("userInfo", JSON.stringify(response?.data));
-            }
-        } catch (error) {
-            message.error(error);
-        }
+      try {
+        fetchUser();
+      } catch (error) {
+        message.error(error);
+      }
     }
     () => {
       setUserInfo(null);
-    }
+    };
   }, []);
-
 
   const navItems = [
     {
@@ -38,25 +40,37 @@ const ProtectedRoute = ({ children }) => {
     },
     {
       key: "roleProfiler",
-      label: <span onClick={() => {
-        if(userInfo?.role === "admin") {
-            navigate("/admin");
-        } else if (userInfo?.role === "user") {
-           navigate("/myBookings");
-        } else {
-            navigate("/partner");
-        }
-      }}>Role Profiler</span>,
+      label: (
+        <span
+          onClick={() => {
+            if (userInfo?.role === "admin") {
+              navigate("/admin");
+            } else if (userInfo?.role === "user") {
+              navigate("/myBookings");
+            } else {
+              navigate("/partner");
+            }
+          }}
+        >
+          Role Profiler
+        </span>
+      ),
       icon: <BookOutlined />,
     },
     {
-        key: "Logout",
-        label: <span onClick={() => {
+      key: "Logout",
+      label: (
+        <span
+          onClick={() => {
             localStorage.removeItem("bookmyshow_token");
             navigate("/login");
-        }}>Logout</span>,
-        icon: <LogoutOutlined />
-    }
+          }}
+        >
+          Logout
+        </span>
+      ),
+      icon: <LogoutOutlined />,
+    },
   ];
   return (
     <Layout>
