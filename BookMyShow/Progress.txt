@@ -121,3 +121,12 @@ Booking
 
 
 Platform User (Admin) -> should be adding a movie 
+
+
+Admin -> 2 Roles
+-> Onboard a movie
+-> maintain a theatre (approve or block)
+
+Partner -> 2 Roles
+-> onboard the theatre
+-> onboard the shows/ maintain the shows
