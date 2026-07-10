@@ -212,10 +212,11 @@ hr {
   cursor: not-allowed;
 }
 .screen-div {
-  max-width: 75%;
+  max-width: 80%;
   margin-inline: auto;
   height: 10px;
-  background-color: #eee;
+  background-color: #6f6e6e;
+  border-radius: 1rem;
 }
 .bottom-card {
   padding: 1rem;

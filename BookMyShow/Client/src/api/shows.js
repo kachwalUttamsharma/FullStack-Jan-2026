@@ -40,17 +40,17 @@ export const getShowsByTheatre = async (payload) => {
   }
 };
 
-// export const getAllTheatresByMovie = async (payload) => {
-//   try {
-//     const response = await axiosInstance.post(
-//       "shows/getAllTheatresByMovie",
-//       payload
-//     );
-//     return response.data;
-//   } catch (err) {
-//     return err.response;
-//   }
-// };
+export const getAllTheatresAndShowsByMovie = async (payload) => {
+  try {
+    const response = await axiosInstance.get(
+      `shows/getAllTheatresAndShowsByMovie/${payload.movie}?date=${payload.date}`,
+      payload
+    );
+    return response.data;
+  } catch (err) {
+    return err.response;
+  }
+};
 
 export const getShowById = async (payload) => {
   try {

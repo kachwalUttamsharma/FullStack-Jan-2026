@@ -68,9 +68,37 @@ export const getAllShowByTheatre = async (req, res) => {
       }
 };
 
-export const getAllShowByMovie = async (req, res) => {
+export const getAllTheatresAndShowsByMovie = async (req, res) => {
       try {
-        //  discuss this later
+        const movieId = req.params.movieId;
+        const {date} = req.query;
+
+        const shows = await Show.find({movie: movieId, date: date}).populate("theatre");
+        // group by theatre 
+        const theatreMap = new Map();
+        // {
+        //   threatreId: {
+        //     ...thetreInfo,
+        //     shows: []
+        //   }
+        // }
+        // each theatre will show for particular day number of show
+        shows?.forEach((show) => {
+          const theatreId = show.theatre._id.toString();
+          if(!theatreMap.has(theatreId)) {
+            theatreMap.set(theatreId, {
+              ...show.theatre._doc,
+              shows: []
+            })
+          }
+          theatreMap.get(theatreId).shows.push(show);
+        })
+        const uniqueTheatre = Array.from(theatreMap.values());
+        res.send({
+          success: true,
+          message: "All theatre fetched successfully",
+          data: uniqueTheatre
+        })
       } catch (error) {
         res.status(500).json({
           success: false,
@@ -82,7 +110,7 @@ export const getAllShowByMovie = async (req, res) => {
 export const getShowById = async (req, res) => {
       try {
         const showId = req.params.showId;
-        const shows = await Show.findById(showId);
+        const shows = await Show.findById(showId).populate("movie").populate("theatre");
         res.status(200).json({
           success: true,
           message: "All shows are fetched successfully",

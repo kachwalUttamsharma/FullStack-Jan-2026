@@ -8,6 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import Partner from './pages/Partner'
 import User from './pages/User'
 import SingleMovie from './pages/SingleMovie'
+import BookingShow from './pages/BookingShow'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/partner" element={<ProtectedRoute><Partner /></ProtectedRoute>} />
         <Route path="/user" element={<ProtectedRoute><User /></ProtectedRoute>} />
         <Route path="/movie/:id" element={<ProtectedRoute><SingleMovie /></ProtectedRoute>}/>
+        <Route  path='/book-show/:id' element={<ProtectedRoute><BookingShow /></ProtectedRoute>} />
       </Routes>
    </BrowserRouter>
   )

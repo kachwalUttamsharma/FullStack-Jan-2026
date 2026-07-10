@@ -5,6 +5,7 @@ import userRoutes from "./src/routes/userRoutes.js";
 import movieRoutes from "./src/routes/movieRoutes.js";
 import theatreRoutes from "./src/routes/theatreRoutes.js";
 import showRoutes from "./src/routes/showRoutes.js";
+import bookingRoutes from "./src/routes/bookingRoutes.js";
 import cors from "cors";
 import { authMiddleware } from "./src/middleware/authMiddleware.js";
 
@@ -29,7 +30,8 @@ app.use(express.json());
 app.use("/bookmyshow/api/v1/users/", userRoutes);
 app.use("/bookmyshow/api/v1/movies/", authMiddleware,movieRoutes);
 app.use("/bookmyshow/api/v1/theatres/", authMiddleware, theatreRoutes);
-app.use("/bookmyshow/api/v1/shows/", authMiddleware, showRoutes)
+app.use("/bookmyshow/api/v1/shows/", authMiddleware, showRoutes);
+app.use("/bookmyshow/api/v1/bookings", authMiddleware, bookingRoutes)
 
 app.get("/", (req, res) => {
     res.send("Book My Show Server")
