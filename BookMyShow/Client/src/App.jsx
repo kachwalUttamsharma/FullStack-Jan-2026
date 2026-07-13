@@ -9,6 +9,7 @@ import Partner from './pages/Partner'
 import User from './pages/User'
 import SingleMovie from './pages/SingleMovie'
 import BookingShow from './pages/BookingShow'
+import MyBookings from './pages/MyBookings'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/user" element={<ProtectedRoute><User /></ProtectedRoute>} />
         <Route path="/movie/:id" element={<ProtectedRoute><SingleMovie /></ProtectedRoute>}/>
         <Route  path='/book-show/:id' element={<ProtectedRoute><BookingShow /></ProtectedRoute>} />
+        <Route path="/mybookings" element={<ProtectedRoute><MyBookings /></ProtectedRoute>} />
       </Routes>
    </BrowserRouter>
   )
