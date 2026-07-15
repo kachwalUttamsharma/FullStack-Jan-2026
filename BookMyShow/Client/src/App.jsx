@@ -10,6 +10,8 @@ import User from './pages/User'
 import SingleMovie from './pages/SingleMovie'
 import BookingShow from './pages/BookingShow'
 import MyBookings from './pages/MyBookings'
+import Forget from './pages/Forget'
+import Reset from './pages/Reset'
 
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
         <Route path="/movie/:id" element={<ProtectedRoute><SingleMovie /></ProtectedRoute>}/>
         <Route  path='/book-show/:id' element={<ProtectedRoute><BookingShow /></ProtectedRoute>} />
         <Route path="/mybookings" element={<ProtectedRoute><MyBookings /></ProtectedRoute>} />
+        <Route path="/forget" element={<Forget />} />
+        <Route path="/reset" element={<Reset />} />
       </Routes>
    </BrowserRouter>
   )

@@ -130,3 +130,10 @@ Admin -> 2 Roles
 Partner -> 2 Roles
 -> onboard the theatre
 -> onboard the shows/ maintain the shows
+
+Today Agenda
+-> User should be select partner / generic user
+-> forget passsword
+-> otp email
+-> reset Password
+-> security 

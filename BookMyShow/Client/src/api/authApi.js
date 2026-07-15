@@ -30,3 +30,22 @@ export const currentUser = async () => {
     return error;
   }
 };
+
+
+export const ForgetPassword = async (values) => {
+  try {
+    const response = await axiosInstace.post("/users/forgetPassword", values);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const ResetPassword = async (values) => {
+  try {
+    const response = await axiosInstace.post("/users/resetPassword", values);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};

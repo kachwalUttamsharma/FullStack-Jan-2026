@@ -53,9 +53,14 @@ const Login = () => {
           </Form.Item>
         </Form>
 
-        <div>
-            <p>New User ? <Link to="/register">Register Here</Link></p>
-        </div>
+         <section>
+          <p>
+            New User ? <Link to="/register">Register Here</Link>
+          </p>
+          <p>
+            Forgot Password ? <Link to="/forget">Click Here</Link>
+          </p>
+        </section>
       </section>
     </main>
   );
