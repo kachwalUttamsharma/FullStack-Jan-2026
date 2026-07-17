@@ -137,3 +137,22 @@ Today Agenda
 -> otp email
 -> reset Password
 -> security 
+
+
+
+
+client and server model 
+
+in Rest API's (client used to make request to server)
+// GET, POST, PATCH, DELETE
+
+
+//  movie Booking
+
+// page refresh -> a new get api call
+
+
+
+// short polling
+// continously make api request to server and keep fetching updated data
+setinterval(() => { fetchSeats()}, 2000)
