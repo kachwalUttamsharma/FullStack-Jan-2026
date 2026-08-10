@@ -1,21 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export const MovieContext = React.createContext();
 
 const MovieContextWrapper = ({ children }) => {
-  const [watchList, setWatchList] = useState();
+  const [watchList, setWatchList] = useState([]); // Initialize as an empty array
 
   useEffect(() => {
-    setWatchList(() => {
-      if (localStorage.getItem("ImdbWatchList")) {
-        return JSON.parse(localStorage.getItem("ImdbWatchList"));
-      }
-    });
+    const storedWatchList = localStorage.getItem("ImdbWatchList");
+    if (storedWatchList) {
+      setWatchList(JSON.parse(storedWatchList));
+    }
   }, []);
 
   const removeFromWatchList = (movie) => {
     setWatchList((prev) => {
-      const filteredList = prev.filter((m) => m?.id != movie?.id);
+      const filteredList = prev.filter((m) => m?.id !== movie?.id);
       localStorage.setItem("ImdbWatchList", JSON.stringify(filteredList));
       return filteredList;
     });
@@ -30,8 +29,14 @@ const MovieContextWrapper = ({ children }) => {
   };
 
   const checkIfMoviePresentInWatchList = (movie) => {
+    // Safeguard to ensure watchList is always an array
+    if (!Array.isArray(watchList)) {
+      console.error("watchList is not an array or is undefined");
+      return false;
+    }
     return watchList.find((m) => m?.id === movie?.id) ? true : false;
   };
+
   return (
     <MovieContext.Provider
       value={{

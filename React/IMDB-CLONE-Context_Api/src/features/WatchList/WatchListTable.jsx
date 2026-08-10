@@ -21,13 +21,13 @@ const WatchListTable = () => {
 
   const handleAscendingOrderRatings = () => {
     const sortedData = watchList?.sort(
-      (A, B) => B?.vote_average - A?.vote_average,
+      (A, B) => B?.vote_average - A?.vote_average
     );
     setWatchList([...sortedData]);
   };
   const handlDesendingOrderRatings = () => {
     const sortedData = watchList?.sort(
-      (A, B) => A?.vote_average - B?.vote_average,
+      (A, B) => A?.vote_average - B?.vote_average
     );
     setWatchList([...sortedData]);
   };
@@ -49,7 +49,9 @@ const WatchListTable = () => {
             return (
               <div
                 key={index}
-                className={`m-4 flex justify-center items-center h-[3rem] w-[9rem] font-bold rounded-xl cursor-pointer ${currGenre === genre ? "bg-blue-400 text-white" : "bg-gray-300"}`}
+                className={`m-4 flex justify-center items-center h-[3rem] w-[9rem] font-bold rounded-xl cursor-pointer ${
+                  currGenre === genre ? "bg-blue-400 text-white" : "bg-gray-300"
+                }`}
                 onClick={() => setCurrGenre(genre)}
               >
                 {genre}

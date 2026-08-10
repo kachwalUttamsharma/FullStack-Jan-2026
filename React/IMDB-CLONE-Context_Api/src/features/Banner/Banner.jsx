@@ -8,26 +8,29 @@ const Banner = () => {
   const [loader, setLoader] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   useEffect(() => {
-    try {
-      setLoader(true);
-      const url =
-        "https://api.themoviedb.org/3/trending/movie/day?api_key=0fa9d94b072b5c497f3a9720acb86bc2&language=en-US";
-      axios.get(url).then((response) => {
-        const movieData = response?.data?.results?.slice(0, 5);
-        setMovies(
-          movieData.map((movie) => {
-            return {
-              title: movie?.title,
-              bannerImage: `https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`,
-            };
-          }),
-        );
-      });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoader(false);
-    }
+    const fetchMovies = async () => {
+      try {
+        setLoader(true);
+        const url =
+          "https://api.themoviedb.org/3/trending/movie/day?api_key=0fa9d94b072b5c497f3a9720acb86bc2&language=en-US";
+        axios.get(url).then((response) => {
+          const movieData = response?.data?.results?.slice(0, 5);
+          setMovies(
+            movieData.map((movie) => {
+              return {
+                title: movie?.title,
+                bannerImage: `https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`,
+              };
+            })
+          );
+        });
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoader(false);
+      }
+    };
+    fetchMovies();
   }, []);
 
   const handlePrev = () => {
